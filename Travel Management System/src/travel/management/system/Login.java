@@ -5,9 +5,11 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.*;
 import java.awt.event.*;
+import java.sql.*;
 
 public class Login extends JFrame implements ActionListener{
     JButton login,signup,password;
+    JTextField t,tp;
     Login() {
         setSize(900,400);
         setLocation(350,200);
@@ -37,7 +39,7 @@ public class Login extends JFrame implements ActionListener{
         l1.setFont(new Font("SAN SERIF", Font.PLAIN,20));
 	p2.add(l1);
         
-        JTextField t = new JTextField();
+        t = new JTextField();
         t.setBounds(60,60,300,30);
         t.setBorder(BorderFactory.createEmptyBorder());
         p2.add(t);
@@ -48,7 +50,7 @@ public class Login extends JFrame implements ActionListener{
 	p2.add(l2);
         
       
-        JTextField tp = new JTextField();
+        tp = new JTextField();
         tp.setBounds(60,150,300,30);
         tp.setBorder(BorderFactory.createEmptyBorder());
         p2.add(tp);
@@ -91,6 +93,30 @@ public class Login extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource()==login){
             
+            try{
+                
+                 Conn c = new Conn();
+                 String sql = "select * from account where username=? and password=?";                 
+                 PreparedStatement st  = c.c.prepareStatement(sql);
+                 
+                 st .setString(1, t.getText());
+                 st .setString(2, tp.getText());
+                 
+                
+                 ResultSet rs = st.executeQuery();
+                 if(rs.next()){
+                     this.setVisible(false);
+                     new Loading(t.getText()).setVisible(true);
+                     
+                 }else{
+                     JOptionPane.showMessageDialog(null, "Incorrect username or Password");
+                 }
+                 
+                 
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            
         }else if(ae.getSource() == signup){
             setVisible(false);
             new Signup();
@@ -100,6 +126,6 @@ public class Login extends JFrame implements ActionListener{
         }
     }
 public static void main(String[] args){
-    new Login();
+    new Login().setVisible(true);;
 }    
 }
