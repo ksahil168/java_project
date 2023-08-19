@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class dashboard extends JFrame{
-    dashboard(){
+    String username;
+    dashboard(String username){
+        this.username = username;
    //     setBounds(0,0,1600,1000);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLayout(null);
@@ -174,6 +176,6 @@ public class dashboard extends JFrame{
     }
     
 public static void main(String[] args){
-    new dashboard();
+    new dashboard("");
 }    
 }

@@ -21,6 +21,7 @@ public class Loading extends JFrame implements Runnable{
                     progressBar.setValue(progressBar.getValue() + 1);
                 }else{
                     setVisible(false);
+                    new dashboard(username);
                 }
                 Thread.sleep(30);
             }
