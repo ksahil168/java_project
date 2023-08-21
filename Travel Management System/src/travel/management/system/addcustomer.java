@@ -55,7 +55,7 @@ public class addcustomer extends JFrame implements ActionListener{
         lblgender.setBounds(30,210,150,25);
         add(lblgender);
         
-        rmale = new JRadioButton("male");
+        rmale = new JRadioButton("Male");
         rmale.setBounds(220,210,70,25);
         rmale.setBackground(Color.WHITE);
         add(rmale);

@@ -2,9 +2,11 @@
 package travel.management.system;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-public class dashboard extends JFrame{
+public class dashboard extends JFrame implements ActionListener{
     String username;
+    JButton addPersonalDetails,viewpersonaldetails;
     dashboard(String username){
         this.username = username;
    //     setBounds(0,0,1600,1000);
@@ -37,12 +39,13 @@ public class dashboard extends JFrame{
         p2.setBounds(0,65,300,900);
         add(p2);
         
-        JButton addPersonalDetails = new JButton("Add Personal Details");
+        addPersonalDetails = new JButton("Add Personal Details");
         addPersonalDetails.setBounds(0,0,300,50);
         addPersonalDetails.setBackground(new Color(0,0,102));
         addPersonalDetails.setForeground(Color.WHITE);
         addPersonalDetails.setFont(new Font("TAHOMA",Font.PLAIN,20));
         addPersonalDetails.setMargin(new Insets(0,0,0,70));
+        addPersonalDetails.addActionListener(this);
         p2.add(addPersonalDetails);
         
         JButton updatepersonaldetails = new JButton("Update Personal Details");
@@ -53,12 +56,13 @@ public class dashboard extends JFrame{
         updatepersonaldetails.setMargin(new Insets(0,0,0,40));
         p2.add(updatepersonaldetails);
         
-        JButton viewpersonaldetails = new JButton("View Details");
+        viewpersonaldetails = new JButton("View Details");
         viewpersonaldetails.setBounds(0,100,300,50);
         viewpersonaldetails.setBackground(new Color(0,0,102));
         viewpersonaldetails.setForeground(Color.WHITE);
         viewpersonaldetails.setFont(new Font("TAHOMA",Font.PLAIN,20));
         viewpersonaldetails.setMargin(new Insets(0,0,0,140));
+        viewpersonaldetails.addActionListener(this);
         p2.add(viewpersonaldetails);
         
         JButton deletepersonaldetails = new JButton("Delete Personal Details");
@@ -173,6 +177,13 @@ public class dashboard extends JFrame{
         
         
         setVisible(true);
+    }
+    public void actionPerformed(ActionEvent ae){
+        if(ae.getSource()==addPersonalDetails){
+            new addcustomer(username);
+        }else if(ae.getSource()== viewpersonaldetails){
+            new ViewCustomer(username);
+        }
     }
     
 public static void main(String[] args){
