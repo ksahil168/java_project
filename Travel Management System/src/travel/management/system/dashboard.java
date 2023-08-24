@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class dashboard extends JFrame implements ActionListener{
     String username;
-    JButton addPersonalDetails,viewpersonaldetails;
+    JButton addPersonalDetails,viewpersonaldetails,checkpackages ,updatepersonaldetails;
     dashboard(String username){
         this.username = username;
    //     setBounds(0,0,1600,1000);
@@ -48,12 +48,13 @@ public class dashboard extends JFrame implements ActionListener{
         addPersonalDetails.addActionListener(this);
         p2.add(addPersonalDetails);
         
-        JButton updatepersonaldetails = new JButton("Update Personal Details");
+        updatepersonaldetails = new JButton("Update Personal Details");
         updatepersonaldetails.setBounds(0,50,300,50);
         updatepersonaldetails.setBackground(new Color(0,0,102));
         updatepersonaldetails.setForeground(Color.WHITE);
         updatepersonaldetails.setFont(new Font("TAHOMA",Font.PLAIN,20));
         updatepersonaldetails.setMargin(new Insets(0,0,0,40));
+        updatepersonaldetails.addActionListener(this);
         p2.add(updatepersonaldetails);
         
         viewpersonaldetails = new JButton("View Details");
@@ -73,12 +74,13 @@ public class dashboard extends JFrame implements ActionListener{
         deletepersonaldetails.setMargin(new Insets(0,0,0,50));
         p2.add(deletepersonaldetails);
         
-        JButton checkpackages = new JButton("Check Packages");
+        checkpackages = new JButton("Check Packages");
         checkpackages.setBounds(0,200,300,50);
         checkpackages.setBackground(new Color(0,0,102));
         checkpackages.setForeground(Color.WHITE);
         checkpackages.setFont(new Font("TAHOMA",Font.PLAIN,20));
         checkpackages.setMargin(new Insets(0,0,0,110));
+        checkpackages.addActionListener(this);
         p2.add(checkpackages);
         
         JButton bookpackages = new JButton("Book Packages");
@@ -183,9 +185,12 @@ public class dashboard extends JFrame implements ActionListener{
             new addcustomer(username);
         }else if(ae.getSource()== viewpersonaldetails){
             new ViewCustomer(username);
-        }
+        }else if(ae.getSource()== updatepersonaldetails){
+            new UpdateCustomer(username);
+        }else if(ae.getSource()== checkpackages){
+            new checkpackage();
+     }
     }
-    
 public static void main(String[] args){
     new dashboard("");
 }    
