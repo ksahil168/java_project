@@ -86,7 +86,6 @@ public class ViewCustomer extends JFrame  {
        add(labelphone);
        
        back = new JButton("Back");
-       back = new JButton("Back");
        back.addActionListener(new ActionListener() {
 	 public void actionPerformed(ActionEvent e) {
 	     setVisible(false);
