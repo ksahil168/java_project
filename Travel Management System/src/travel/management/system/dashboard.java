@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class dashboard extends JFrame implements ActionListener{
     String username;
-    JButton bookpackages,addPersonalDetails,viewpersonaldetails,checkpackages ,updatepersonaldetails;
+    JButton bookpackages,destination,viewhotels,viewpackages,addPersonalDetails,viewpersonaldetails,checkpackages ,updatepersonaldetails;
     dashboard(String username){
         this.username = username;
    //     setBounds(0,0,1600,1000);
@@ -92,20 +92,22 @@ public class dashboard extends JFrame implements ActionListener{
         bookpackages.addActionListener(this);
         p2.add(bookpackages);
         
-        JButton viewpackages = new JButton("View Packages");
+        viewpackages = new JButton("View Packages");
         viewpackages.setBounds(0,300,300,50);
         viewpackages.setBackground(new Color(0,0,102));
         viewpackages.setForeground(Color.WHITE);
         viewpackages.setFont(new Font("TAHOMA",Font.PLAIN,20));
         viewpackages.setMargin(new Insets(0,0,0,120));
+        viewpackages.addActionListener(this);
         p2.add(viewpackages);
         
-        JButton viewhotels = new JButton("View Hotels");
+        viewhotels = new JButton("View Hotels");
         viewhotels.setBounds(0,350,300,50);
         viewhotels.setBackground(new Color(0,0,102));
         viewhotels.setForeground(Color.WHITE);
         viewhotels.setFont(new Font("TAHOMA",Font.PLAIN,20));
         viewhotels.setMargin(new Insets(0,0,0,145));
+        viewhotels.addActionListener(this);
         p2.add(viewhotels);
         
         JButton bookhotels = new JButton("Book Hotels");
@@ -124,12 +126,13 @@ public class dashboard extends JFrame implements ActionListener{
         viewbookedhotels.setMargin(new Insets(0,0,0,75));
         p2.add(viewbookedhotels);
         
-        JButton destination = new JButton("Destination");
+        destination = new JButton("Destination");
         destination.setBounds(0,500,300,50);
         destination.setBackground(new Color(0,0,102));
         destination.setForeground(Color.WHITE);
         destination.setFont(new Font("TAHOMA",Font.PLAIN,20));
         destination.setMargin(new Insets(0,0,0,155));
+        destination.addActionListener(this);
         p2.add(destination);
         
         JButton payments = new JButton("Payments");
@@ -192,7 +195,13 @@ public class dashboard extends JFrame implements ActionListener{
             new checkpackage();
         }else if(ae.getSource()== bookpackages){
             new BookPackage(username);
-    }
+        }else if(ae.getSource()== viewpackages){
+            new viewpackage(username);
+        }else if(ae.getSource()== viewhotels){
+            new checkhotels();
+        }else if(ae.getSource()== destination){
+            new destination();
+        }
     }
 public static void main(String[] args){
     new dashboard("");
