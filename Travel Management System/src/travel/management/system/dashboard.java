@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class dashboard extends JFrame implements ActionListener{
     String username;
-    JButton bookpackages,bookhotels,destination,viewhotels,viewpackages,addPersonalDetails,viewpersonaldetails,checkpackages ,updatepersonaldetails;
+    JButton bookpackages,viewbookedhotels,bookhotels,destination,viewhotels,viewpackages,addPersonalDetails,viewpersonaldetails,checkpackages ,updatepersonaldetails;
     dashboard(String username){
         this.username = username;
    //     setBounds(0,0,1600,1000);
@@ -119,12 +119,13 @@ public class dashboard extends JFrame implements ActionListener{
         bookhotels.addActionListener(this);
         p2.add(bookhotels);
         
-        JButton viewbookedhotels = new JButton("View Booked Hotels");
+        viewbookedhotels = new JButton("View Booked Hotels");
         viewbookedhotels.setBounds(0,450,300,50);
         viewbookedhotels.setBackground(new Color(0,0,102));
         viewbookedhotels.setForeground(Color.WHITE);
         viewbookedhotels.setFont(new Font("TAHOMA",Font.PLAIN,20));
         viewbookedhotels.setMargin(new Insets(0,0,0,75));
+        viewbookedhotels.addActionListener(this);
         p2.add(viewbookedhotels);
         
         destination = new JButton("Destination");
@@ -204,6 +205,8 @@ public class dashboard extends JFrame implements ActionListener{
             new destination();
         }else if(ae.getSource()== bookhotels){
             new bookhotel(username);
+        }else if(ae.getSource()== viewbookedhotels){
+            new viewbookedhotel(username);
         }
     }
 public static void main(String[] args){
