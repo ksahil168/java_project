@@ -6,8 +6,9 @@ import java.awt.event.*;
 
 public class dashboard extends JFrame implements ActionListener{
     String username;
-    JButton bookpackages,viewbookedhotels,bookhotels,destination,viewhotels,viewpackages,addPersonalDetails,viewpersonaldetails,checkpackages ,updatepersonaldetails;
-    dashboard(String username){
+    JButton payments,bookpackages,viewbookedhotels,bookhotels,destination,viewhotels,viewpackages,addPersonalDetails,viewpersonaldetails,checkpackages ,updatepersonaldetails;
+    JButton calculator,notepad,about,deletepersonaldetails;
+     dashboard(String username){
         this.username = username;
    //     setBounds(0,0,1600,1000);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -66,12 +67,13 @@ public class dashboard extends JFrame implements ActionListener{
         viewpersonaldetails.addActionListener(this);
         p2.add(viewpersonaldetails);
         
-        JButton deletepersonaldetails = new JButton("Delete Personal Details");
+        deletepersonaldetails = new JButton("Delete Personal Details");
         deletepersonaldetails.setBounds(0,150,300,50);
         deletepersonaldetails.setBackground(new Color(0,0,102));
         deletepersonaldetails.setForeground(Color.WHITE);
         deletepersonaldetails.setFont(new Font("TAHOMA",Font.PLAIN,20));
         deletepersonaldetails.setMargin(new Insets(0,0,0,50));
+        deletepersonaldetails.addActionListener(this);
         p2.add(deletepersonaldetails);
         
         checkpackages = new JButton("Check Packages");
@@ -137,36 +139,40 @@ public class dashboard extends JFrame implements ActionListener{
         destination.addActionListener(this);
         p2.add(destination);
         
-        JButton payments = new JButton("Payments");
+        payments = new JButton("Payments");
         payments.setBounds(0,550,300,50);
         payments.setBackground(new Color(0,0,102));
         payments.setForeground(Color.WHITE);
         payments.setFont(new Font("TAHOMA",Font.PLAIN,20));
         payments.setMargin(new Insets(0,0,0,165));
+        payments.addActionListener(this);
         p2.add(payments);
         
-        JButton calculator = new JButton("Calculator");
+        calculator = new JButton("Calculator");
         calculator.setBounds(0,600,300,50);
         calculator.setBackground(new Color(0,0,102));
         calculator.setForeground(Color.WHITE);
         calculator.setFont(new Font("TAHOMA",Font.PLAIN,20));
         calculator.setMargin(new Insets(0,0,0,165));
+        calculator.addActionListener(this);
         p2.add(calculator);
         
-        JButton notepad = new JButton("Notepad");
+        notepad = new JButton("Notepad");
         notepad.setBounds(0,650,300,50);
         notepad.setBackground(new Color(0,0,102));
         notepad.setForeground(Color.WHITE);
         notepad.setFont(new Font("TAHOMA",Font.PLAIN,20));
         notepad.setMargin(new Insets(0,0,0,175));
+        notepad.addActionListener(this);
         p2.add(notepad);
         
-        JButton about = new JButton("About");
+        about = new JButton("About");
         about.setBounds(0,700,300,50);
         about.setBackground(new Color(0,0,102));
         about.setForeground(Color.WHITE);
         about.setFont(new Font("TAHOMA",Font.PLAIN,20));
         about.setMargin(new Insets(0,0,0,195));
+        about.addActionListener(this);
         p2.add(about);
         
         ImageIcon i4 = new ImageIcon(ClassLoader.getSystemResource("icons/home.jpg"));
@@ -207,7 +213,27 @@ public class dashboard extends JFrame implements ActionListener{
             new bookhotel(username);
         }else if(ae.getSource()== viewbookedhotels){
             new viewbookedhotel(username);
-        }
+            
+        }else if(ae.getSource()== payments){
+            new Payment();
+        } else if(ae.getSource()== calculator){
+            try{
+               Runtime.getRuntime().exec("calc.exe");
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }else if(ae.getSource()== notepad){
+         try{
+               Runtime.getRuntime().exec("notepad.exe");
+            }catch(Exception e){
+                e.printStackTrace();
+            }   
+        }else if(ae.getSource()== about){
+            new about();
+            
+        }else if(ae.getSource()== deletepersonaldetails){
+            new deletedetails(username);
+    }
     }
 public static void main(String[] args){
     new dashboard("");
